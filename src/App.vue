@@ -1,56 +1,80 @@
 <template>
-  <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+  <v-app id="inspire">
+    <v-navigation-drawer v-model="drawer" app>
+      <v-list dense>
+        <v-list-item link to="/buyers">
+          <v-list-item-action>
+            <v-icon>fas fa-users</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>
+              Compradores
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link to="/transactions">
+          <v-list-item-action>
+            <v-icon>fas fa-money-check</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <!-- <router-link to="/transactions" class="router-link"> -->
+            <v-list-item-title>
+              Transacciones
+            </v-list-item-title>
+            <!-- </router-link> -->
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link to="/products">
+          <v-list-item-action>
+            <v-icon>fas fa-utensils</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <!-- <router-link to="/transactions" class="router-link"> -->
+            <v-list-item-title>
+              Productos
+            </v-list-item-title>
+            <!-- </router-link> -->
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+    <v-app-bar app color="indigo" dark>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <router-link to="/" class="router-link router-link-header">
+        <v-toolbar-title>Roa's Restaurant</v-toolbar-title>
+      </router-link>
     </v-app-bar>
 
     <v-main>
-      <HelloWorld />
+      <v-container class="fill-height" fluid>
+        <router-view></router-view>
+      </v-container>
     </v-main>
+    <v-footer color="indigo" app>
+      <span class="white--text">&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
-
 export default {
-  name: "App",
-
-  components: {
-    HelloWorld
-  },
-
-  data: () => ({
-    //
-  })
+  data() {
+    return {
+      drawer: false
+    };
+  }
 };
 </script>
+
+<style lang="scss" scoped>
+.router-link-header {
+  color: #ffffff;
+}
+</style>
+
+<style lang="css">
+.router-link {
+  text-decoration: none;
+}
+</style>
